@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+           <span> <h1 class="display-3 bg-info text-center mt-3 mb-3"><span><i class="fas fa-newspaper"></i></span> New york Times Article search</h1></span> 
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="card-header fw-bold" id= "searchParam"><i class="fas fa-newspaper m-3"></i>Search Parameters</div>
+                <div class="mb-3 mt-3">
+                    <label for="formGroupExampleInput" class="form-label fw-bold">Search term</label>
+                    <input type="text" class="form-control " id="searchTerm" >
+                  </div>
+                  <div class="mb-3">
+                    <label for="formGroupExampleInput" class="form-label fw-bold">Number of records to retrieve:</label>
+                    <input type="number" class="form-control" id="noOfRecords" >
+                  </div>
+                  <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label fw-bold">StartYear(optional)</label>
+                    <input type="text" class="form-control" id="startYear">
+                  </div>
+                  <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label fw-bold">End Year(optional)</label>
+                    <input type="text" class="form-control" id="endYear" >
+                  </div>
+                <div id= "icons">
+                  <button class= "btn btn-secondary">
+                    <span><i class="fas fa-search"id= "search">Search</i></span>
+                  </button>
+                 <button class= "btn btn-secondary"><span class="m-3"><i class="fas fa-trash-alt" id = "clear">Clear Results</i></span>
+                </button>
+                </div>
+            </div>
+          </div>
+          <div class="card mt-5">
+              <div class="body"></div>
+              <div class="card-header fw-bold">Top Articles</div>
+              <p class="card-text m-3"></p>
+          </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script type= "text/javascript">
+        // var api_key = "GFDKlkdqyPib15AGELJRzhBVVcc3I6BI"
+        var search = $("#searchTerm").val()
+       var query_url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q="+search+"&fq=The New York Times&api-key=GFDKlkdqyPib15AGELJRzhBVVcc3I6BI"
+        $.ajax({url: query_url, method:"GET"}).then(function(response){
+          console.log(response)
+        })
+        $("#search").on("click", function(){
+      console.log(search)
+        })
+      </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+</html>
